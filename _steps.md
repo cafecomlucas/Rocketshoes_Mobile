@@ -115,3 +115,9 @@ Propriedade `parser` adicionada com a string `babel-eslint`.
 (Para corrigir os erros indicados automaticamente é necessário ter as propriedades `editor.formatOnSave`, `editor.codeActionsOnSave` e `eslint.validate` configuradas no `settings.json` do VSCode)
 
 ---
+
+## Limpando códigos desnecessários
+
+Arquivo `App.js` removido. Pasta `src` criada com o arquivo `index.js`. Arquivo raiz `index.js` modificado para importar o componente `App` do arquivo `src/index.js`.
+
+---
