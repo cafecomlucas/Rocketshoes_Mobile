@@ -194,3 +194,9 @@ Arquivo `src/routes.js` criado com a configuração do Stack Navigation e a impo
 Arquivo `src/index.js` modificado para importar o `NavigationContainer` do React Native Navigation. Este módulo serve como container para todo o conteúdo. Foi importado no arquivo `src/index.js` ao invés do `src/routes.js` pois existe o cabeçalho customizado que será padrão em todas as páginas.
 
 ---
+
+## App | Estilizando barra de status
+
+Arquivo `src/index.js` modificado para definir a cor padrão da barra de status do topo através do componente `StatusBar`.
+
+---
