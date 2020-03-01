@@ -11,6 +11,10 @@ function Routes() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        cardStyle: {
+          shadowColor: 'transparent',
+          backgroundColor: 'transparent',
+        },
       }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Cart" component={Cart} />
