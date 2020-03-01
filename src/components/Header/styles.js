@@ -5,16 +5,30 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+export const LogoButton = styled(RectButton)`
+  margin-left: 15px;
+  width: 55%;
+`;
+
+export const LogoImage = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
+  width: 100%;
 `;
 
 export const CartButton = styled(RectButton)`
-  margin: 20px 10px 0 10px;
+  margin-right: 15px;
   position: relative;
+  align-self: flex-end;
 `;
 
 export const CartIcon = styled(Icon)`
   padding: 0 10px 0 0;
-  font-size: 42px;
+  font-size: 32px;
   color: #fff;
 `;
 
@@ -24,10 +38,10 @@ export const CartButtonText = styled.Text`
   top: 0;
   background: #395c80;
   color: #fff;
-  width: 22px;
-  height: 22px;
-  line-height: 22px;
-  border-radius: 11px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 10px;
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
 `;

@@ -1,10 +1,19 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Container, CartButton, CartButtonText, CartIcon} from './styles';
+import {
+  Container,
+  LogoButton,
+  LogoImage,
+  CartButton,
+  CartButtonText,
+  CartIcon,
+} from './styles';
+import LogoRocketshoes from '../../assets/rocketshoes-logo.png';
 
 const Header = () => (
   <Container>
-    <View />
+    <LogoButton>
+      <LogoImage source={LogoRocketshoes} />
+    </LogoButton>
     <CartButton>
       <CartIcon name="shopping-basket" />
       <CartButtonText>0</CartButtonText>

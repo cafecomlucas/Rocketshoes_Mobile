@@ -230,3 +230,9 @@ yarn add react-native-vector-icons
 Consulta de ícones disponíveis em: https://oblador.github.io/react-native-vector-icons/
 
 ---
+
+## Cabeçalho | Criação da estrutura e estilização
+
+Pasta `Header` com os arquivos `index.js` e `styles.js` criada na pasta `components` e importado para o App (`src/index.js`). Foi criada a estrutura e a estilização do logo e do ícone do carrinho.
+
+---
