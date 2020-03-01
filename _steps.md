@@ -145,3 +145,52 @@ No USB/Wifi também pode ser necessário indicar o `host` pro método `configure
 Arquivo `.eslintrc.js` alterado para não indicar erros da variável global `__DEV__` ou nas chamadas do `console.tron`.
 
 ---
+
+## Configurando Roteamento | React Navigation
+
+É recomendável olhar a [documentação](https://reactnavigation.org/docs/getting-started/) do React Natigation pois essa dependência passa por atualizações constantes.
+
+### Instalando o módulo de navegação
+
+React Navigation instalado:
+
+```bash
+yarn add @react-navigation/native
+```
+
+Dependências adicionais instaladas:
+
+```bash
+yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+```
+
+(Para Android) Linhas adicionadas no arquivo `android/app/build.gradle`, necessário pra dependência `react-native-screens`:
+
+```
+implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
+```
+
+(Para Android) necessário importar o módulo abaixo no arquivo raiz pra dependência `react-native-gesture-handler`:
+
+```
+import 'react-native-gesture-handler';
+```
+
+### Instalando o tipo de navegação
+
+O tipo de navegação escolhida e instalada pra essa aplicação foi a navegação em pilha (Stack):
+
+```bash
+yarn add @react-navigation/stack
+```
+
+### Criando / Modificando arquivos
+
+Arquivos `Cart/index.js` e `Home/index.js` criados na pasta `pages` com a estrutura básica.
+
+Arquivo `src/routes.js` criado com a configuração do Stack Navigation e a importação/configuração das páginas criadas (pasta `pages`). A opção `screenOptions.headerShown` foi setada em `false` para ocultar o cabeçalho padrão.
+
+Arquivo `src/index.js` modificado para importar o `NavigationContainer` do React Native Navigation. Este módulo serve como container para todo o conteúdo. Foi importado no arquivo `src/index.js` ao invés do `src/routes.js` pois existe o cabeçalho customizado que será padrão em todas as páginas.
+
+---

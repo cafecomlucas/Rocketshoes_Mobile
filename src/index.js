@@ -1,18 +1,20 @@
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 
 import './config/ReactotronConfig';
 
+import Routes from './routes';
+
 // import { Container } from './styles';
 
-const App = () => {
-  console.tron.log('iniciou!');
-  return (
-    <View>
-      <Text>Hello React Native!</Text>
-    </View>
-  );
-};
+console.tron.log('iniciou!');
+const App = () => (
+  <NavigationContainer>
+    <Text>** Header **</Text>
+    <Routes />
+  </NavigationContainer>
+);
 
 export default App;
