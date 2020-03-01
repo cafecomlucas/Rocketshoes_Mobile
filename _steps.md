@@ -200,3 +200,33 @@ Arquivo `src/index.js` modificado para importar o `NavigationContainer` do React
 Arquivo `src/index.js` modificado para definir a cor padrão da barra de status do topo através do componente `StatusBar`.
 
 ---
+
+## Instalação do Styled Components | Estilização do background geral
+
+Para trabalhar com a estilização utilizando a sintaxe do CSS, instalamos o Styled-components:
+
+```bash
+yarn add styled-components
+```
+
+Arquivo `src/components/App/index.js` criado com a estilização do background geral.
+
+Arquivo `src/index.js` modificado. Estilização importada e estrutura atualizada.
+
+---
+
+## Instalação do React Native Vector Icons | Material Design
+
+Seguindo a [documentação](https://github.com/oblador/react-native-vector-icons), o módulo React Native Vector Icons foi adicionado ao projeto. Adicionamos apenas os ícones do Material Design.
+
+Módulo adicionado:
+
+```bash
+yarn add react-native-vector-icons
+```
+
+(Para Android) Linhas adicionadas no arquivo `Android/app/build.gradle`.
+
+Consulta de ícones disponíveis em: https://oblador.github.io/react-native-vector-icons/
+
+---

@@ -8,7 +8,3 @@ export const Container = styled.ImageBackground.attrs({
   flex: 1;
   background-color: #191920;
 `;
-
-export const Header = styled.Text`
-  color: #fff;
-`;
