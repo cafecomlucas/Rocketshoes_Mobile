@@ -55,6 +55,8 @@ react-native start
 Mais informações sobre a configuração do ambiente React Native:
 https://docs.rocketseat.dev/ambiente-react-native/introducao
 
+(é interessante parar a execução atual antes de instalar qualquer pacote novo para evitar erros)
+
 ---
 
 ## Padrão de código (Style guide) | EditorConfig • ESLint • Prettier
@@ -119,5 +121,27 @@ Propriedade `parser` adicionada com a string `babel-eslint`.
 ## Limpando códigos desnecessários
 
 Arquivo `App.js` removido. Pasta `src` criada com o arquivo `index.js`. Arquivo raiz `index.js` modificado para importar o componente `App` do arquivo `src/index.js`.
+
+---
+
+## Configurando Debug externo | Ferramenta Reactotron
+
+Dependência Reactotron pro React Native instalada:
+
+```bash
+yarn add reactotron-react-native
+```
+
+Arquivo `src/config/ReactotronConfig.js` criado com a inicialização do Reactotron em ambiente de desenvolvimento. No arquivo `src/index.js` importamos a configuração e imprimimos um log com a mensagem "iniciou!".
+
+Para funcionar no USB/Wifi, pode ser necessário indicar a porta pro SDK do Android através do comando:
+
+```bash
+adb reverse tcp:9090 tcp:9090
+```
+
+No USB/Wifi também pode ser necessário indicar o `host` pro método `configure` do Reactotron.
+
+Arquivo `.eslintrc.js` alterado para não indicar erros da variável global `__DEV__` ou nas chamadas do `console.tron`.
 
 ---
