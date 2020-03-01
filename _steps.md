@@ -236,3 +236,13 @@ Consulta de ícones disponíveis em: https://oblador.github.io/react-native-vect
 Pasta `Header` com os arquivos `index.js` e `styles.js` criada na pasta `components` e importado para o App (`src/index.js`). Foi criada a estrutura e a estilização do logo e do ícone do carrinho.
 
 ---
+
+## Cabeçalho | Implementação da navegação principal
+
+Diferente da versão Web, para implementar a navegação no ambiente mobile é necessário que o Header fique entro do Stack.Navigator (que é como se fosse o 'Switch' na versão web) para que o `onPress` funcione no `RectButton`.
+
+Estrutura dos componentes `src/index.js`, `src/routes.js` e `src/components/Header` modificada para a navegação poder funcionar. Por conta da modificação foi possível mover o `NavigationContainer` pro componente `src/routes.js`.
+
+Depois que a navegação funcionou, foi necessário remover o fundo transparente pois uma `Screen` entra por cima de outra nesse tipo de navegação e é necessário definir uma cor de fundo. Por conta disso a imagem de fundo geral (`src/components/App`) foi removida.
+
+---

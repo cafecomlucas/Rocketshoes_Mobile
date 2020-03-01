@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export const Container = styled.View`
+export const HeaderNav = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

@@ -1,24 +1,24 @@
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Home from './pages/Home';
-import Cart from './pages/Cart';
+import Header from './components/Header';
 
 const Stack = createStackNavigator();
 
 function Routes() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        cardStyle: {
-          shadowColor: 'transparent',
-          backgroundColor: 'transparent',
-        },
-      }}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Cart" component={Cart} />
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          cardStyle: {
+            backgroundColor: '#191920',
+          },
+        }}>
+        <Stack.Screen name="Header" component={Header} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
