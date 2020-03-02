@@ -7,7 +7,7 @@ import Routes from './routes';
 console.tron.log('iniciou!');
 const App = () => (
   <>
-    <StatusBar barStyle="light-content" backgroundColor="#395c80" />
+    <StatusBar barStyle="light-content" backgroundColor="#141419" />
     <Routes />
   </>
 );

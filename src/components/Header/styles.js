@@ -6,7 +6,8 @@ export const HeaderNav = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  padding: 20px 0;
+  background: #141419;
 `;
 
 export const LogoButton = styled(RectButton)`

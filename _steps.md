@@ -246,3 +246,9 @@ Estrutura dos componentes `src/index.js`, `src/routes.js` e `src/components/Head
 Depois que a navegação funcionou, foi necessário remover o fundo transparente pois uma `Screen` entra por cima de outra nesse tipo de navegação e é necessário definir uma cor de fundo. Por conta disso a imagem de fundo geral (`src/components/App`) foi removida.
 
 ---
+
+## Home | Criando estrutura e estilização
+
+Arquivos `src/Home/index.js` e `src/Home/styles.js` modificados com a nova estrutura e a nova estilização. Por enquanto os dados exibidos são estáticos.
+
+---
