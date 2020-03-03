@@ -252,3 +252,9 @@ Depois que a navegação funcionou, foi necessário remover o fundo transparente
 Arquivos `src/Home/index.js` e `src/Home/styles.js` modificados com a nova estrutura e a nova estilização. Por enquanto os dados exibidos são estáticos.
 
 ---
+
+## Cart | Criando estrutura e estilização
+
+Arquivos `src/Cart/index.js` e `src/Cart/styles.js` modificados com a nova estrutura e a nova estilização. Por enquanto os dados exibidos são estáticos.
+
+---
