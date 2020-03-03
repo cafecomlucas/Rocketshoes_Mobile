@@ -278,3 +278,15 @@ json-server server.json -p 3333
 Rotas [localhost:3333/products](http://localhost:3333/products) e [localhost:3333/stock](http://localhost:3333/stock) já funcionam ao acessá-las pelo browser
 
 ---
+
+## Instalação do Axios para buscar dados na REST API
+
+Instalamos o serviço `axios` para poder buscar os dados da API configurada:
+
+```bash
+yarn add axios
+```
+
+Definimos as configurações do serviço no arquivo `services/api`.
+
+---
