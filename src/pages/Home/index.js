@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
+import api from '../../services/api';
 
 import {
   Container,
+  ProductList,
   Product,
   ProductImage,
   Title,
@@ -13,44 +15,49 @@ import {
   AddText,
 } from './styles';
 
-const Home = () => (
-  <Container>
-    <Product>
-      <ProductImage
-        source={{
-          uri:
-            'https://static.netshoes.com.br/produtos/tenis-caminhada-detalhes-em-couro-masculino/06/E74-0492-006/E74-0492-006_detalhe2.jpg?ims=326x',
-        }}
-      />
-      <Title>Tênis maneiro</Title>
-      <Price>R$ 139,90</Price>
-      <AddButton>
-        <AmountContainer>
-          <AddIcon name="add-shopping-cart" size={22} color="#fff" />
-          <TextAmount> 3</TextAmount>
-        </AmountContainer>
-        <AddText>ADICIONAR</AddText>
-      </AddButton>
-    </Product>
+class Home extends Component {
+  state = {
+    products: [],
+  };
 
-    <Product>
-      <ProductImage
-        source={{
-          uri:
-            'https://static.netshoes.com.br/produtos/tenis-caminhada-detalhes-em-couro-masculino/06/E74-0492-006/E74-0492-006_detalhe2.jpg?ims=326x',
-        }}
-      />
-      <Title>Tênis maneiro</Title>
-      <Price>R$ 139,90</Price>
-      <AddButton>
-        <AmountContainer>
-          <AddIcon name="add-shopping-cart" size={22} color="#fff" />
-          <TextAmount> 3</TextAmount>
-        </AmountContainer>
-        <AddText>ADICIONAR</AddText>
-      </AddButton>
-    </Product>
-  </Container>
-);
+  async componentDidMount() {
+    const response = await api.get('products');
+    const products = response.data;
+    this.setState({products});
+  }
+
+  render() {
+    const {products} = this.state;
+
+    return (
+      <Container>
+        <ProductList
+          data={products}
+          horizontal
+          showsHorizontalScrollIndicator
+          keyExtractor={product => product.id}
+          renderItem={({item: product}) => (
+            <Product>
+              <ProductImage
+                source={{
+                  uri: product.image,
+                }}
+              />
+              <Title>{product.title}</Title>
+              <Price>{product.price}</Price>
+              <AddButton>
+                <AmountContainer>
+                  <AddIcon name="add-shopping-cart" size={22} color="#fff" />
+                  <TextAmount> 3</TextAmount>
+                </AmountContainer>
+                <AddText>ADICIONAR</AddText>
+              </AddButton>
+            </Product>
+          )}
+        />
+      </Container>
+    );
+  }
+}
 
 export default Home;

@@ -4,8 +4,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const Container = styled.View`
   margin: 20px 15px;
-  flex-direction:row;
+  flex-direction: row;
 `;
+
+export const ProductList = styled.FlatList.attrs({
+  contentContainerStyle: {flexDirection: 'row'},
+})``;
 
 export const Product = styled.View`
   background: #fff;
@@ -25,17 +29,19 @@ export const Title = styled.Text`
   line-height: 20px;
   margin-top: 5px;
   color: #333;
+  width: 200px;
 `;
 
 export const Price = styled.Text`
- font-size: 21px;
+  font-size: 21px;
   font-weight: bold;
   margin: 5px 0 20px;
   color: #000;
 `;
 
 export const AddButton = styled(RectButton)`
-  flex-direction:row;
+  flex-direction: row;
+  margin-top: auto;
   background: #395c80;
   color: #fff;
   border-radius: 4px;
@@ -45,7 +51,7 @@ export const AddButton = styled(RectButton)`
 `;
 
 export const AmountContainer = styled.View`
-  flex-direction:row;
+  flex-direction: row;
   background: rgba(0, 0, 0, 0.2);
   padding: 12px;
   align-self: stretch;
@@ -58,8 +64,8 @@ export const AddIcon = styled(Icon)`
 `;
 
 export const TextAmount = styled.Text`
-  font-size:12px;
-  color:#fff;
+  font-size: 12px;
+  color: #fff;
 `;
 
 export const AddText = styled.Text`
@@ -67,6 +73,6 @@ export const AddText = styled.Text`
   padding: 10px;
   text-align: center;
   font-weight: bold;
-  color:#fff;
-  font-size:14px;
+  color: #fff;
+  font-size: 14px;
 `;
