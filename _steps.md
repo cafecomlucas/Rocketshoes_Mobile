@@ -258,3 +258,23 @@ Arquivos `src/Home/index.js` e `src/Home/styles.js` modificados com a nova estru
 Arquivos `src/Cart/index.js` e `src/Cart/styles.js` modificados com a nova estrutura e a nova estilização. Por enquanto os dados exibidos são estáticos.
 
 ---
+
+## Configuração do Back-end que serve uma REST API (fake)
+
+Módulo [json-server](https://github.com/typicode/json-server) instalado globalmente: permite servir uma REST API informando apenas um arquivo JSON com os dados a serem servidos.
+
+```bash
+yarn global add json-server
+```
+
+Arquivo `server.json` criado na raiz da aplicação.
+
+Json Server inicializado:
+
+```bash
+json-server server.json -p 3333
+```
+
+Rotas [localhost:3333/products](http://localhost:3333/products) e [localhost:3333/stock](http://localhost:3333/stock) já funcionam ao acessá-las pelo browser
+
+---
