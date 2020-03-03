@@ -249,13 +249,13 @@ Depois que a navegação funcionou, foi necessário remover o fundo transparente
 
 ## Home | Criando estrutura e estilização
 
-Arquivos `src/Home/index.js` e `src/Home/styles.js` modificados com a nova estrutura e a nova estilização. Por enquanto os dados exibidos são estáticos.
+Arquivos `src/pages/Home/index.js` e `src/pages/Home/styles.js` modificados com a nova estrutura e a nova estilização. Por enquanto os dados exibidos são estáticos.
 
 ---
 
 ## Cart | Criando estrutura e estilização
 
-Arquivos `src/Cart/index.js` e `src/Cart/styles.js` modificados com a nova estrutura e a nova estilização. Por enquanto os dados exibidos são estáticos.
+Arquivos `src/pages/Cart/index.js` e `src/pages/Cart/styles.js` modificados com a nova estrutura e a nova estilização. Por enquanto os dados exibidos são estáticos.
 
 ---
 
@@ -288,5 +288,30 @@ yarn add axios
 ```
 
 Definimos as configurações do serviço no arquivo `services/api`.
+
+---
+
+## Home | Buscando dados na API e atualizando estrutura
+
+Arquivos `src/pages/Home/index.js` e `src/pages/Home/styles.js` modificados com a nova estrutura para exibir os dados da API.
+
+Por enquanto, a quantidade de itens no carrinho permanece estática.
+
+---
+
+## Home | Formatando o preço de cada produto
+
+Módulo [react-native-intl](https://github.com/taggon/react-native-intl) adicionado ao projeto para fazer a formatação dos preços.
+
+```bash
+yarn add react-native-intl
+react-native link
+```
+
+(necessário recompilar o projeto)
+
+Arquivo `src/util/format.js` criado com a configuração de formatação.
+
+Formatação importada e utilizada no arquivo `src/pages/Home/index.js`.
 
 ---

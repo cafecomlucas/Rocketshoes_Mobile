@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import api from '../../services/api';
+import {numberFormat} from '../../util/format';
 
 import {
   Container,
@@ -22,7 +23,12 @@ class Home extends Component {
 
   async componentDidMount() {
     const response = await api.get('products');
-    const products = response.data;
+    const products = await Promise.all(
+      response.data.map(async product => ({
+        ...product,
+        formattedPrice: await numberFormat.format(product.price),
+      }))
+    );
     this.setState({products});
   }
 
@@ -44,7 +50,7 @@ class Home extends Component {
                 }}
               />
               <Title>{product.title}</Title>
-              <Price>{product.price}</Price>
+              <Price>{product.formattedPrice}</Price>
               <AddButton>
                 <AmountContainer>
                   <AddIcon name="add-shopping-cart" size={22} color="#fff" />
