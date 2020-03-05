@@ -339,3 +339,16 @@ Módulo App (arquivo `src/index`) modificado para importar o `Provider` do módu
 Estrutura modificada para envolver todos os elementos com o `Provider` informando o `store` via propriedade (disponibilizando o `Redux Store` pra toda a aplicação).
 
 ---
+
+## Instalação/Configuração do módulo de integração do Reactrotron com o Redux
+
+Módulo de integração do Reactotron com o Redux instalado:
+```bash
+yarn add reactotron-redux
+```
+
+Arquivo `src/config/ReactotronConfig.js` modificado para importar e utilizar o novo módulo instalado.
+
+Arquivo `src/store/index.js` modificado para ativar os logs do Reactotron nas operações do Redux Store em ambiente de desenvolvimento.
+
+---
