@@ -343,6 +343,7 @@ Estrutura modificada para envolver todos os elementos com o `Provider` informand
 ## Instalação/Configuração do módulo de integração do Reactrotron com o Redux
 
 Módulo de integração do Reactotron com o Redux instalado:
+
 ```bash
 yarn add reactotron-redux
 ```
@@ -350,5 +351,15 @@ yarn add reactotron-redux
 Arquivo `src/config/ReactotronConfig.js` modificado para importar e utilizar o novo módulo instalado.
 
 Arquivo `src/store/index.js` modificado para ativar os logs do Reactotron nas operações do Redux Store em ambiente de desenvolvimento.
+
+---
+
+## Instalação immer | Facilitando a manipulação de dados imutáveis
+
+Instalamos o módulo immer para facilitar a manipulação de dados do estado (através do método `produce`).
+
+```bash
+yarn add immer
+```
 
 ---
