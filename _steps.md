@@ -363,3 +363,15 @@ yarn add immer
 ```
 
 ---
+
+## Home | Criação do Reducer/Action @cart/ADD
+
+Arquivo `src/store/modules/cart/reducer.js` do REDUCER criado. O valor inicial do state é um objeto com uma propriedade chamada "products" que guardará a lista de produtos. Por enquanto o objeto só tem essa propriedade. Switch Case com a condição '@cart/ADD' criado. Quando um produto é adicionado ao carrinho pela primeira vez, o amount é adicionado com o valor 1 e quando um produto já existe, o amount é apenas incrementado.
+
+Arquivo `src/store/modules/cart/actions.js` das ACTIONS criado. Exporta um objeto com o type '@cart/ADD', além de repassar o product recebido via argumento.
+
+Arquivo `src/store/modules/rootReducers.js` modificado para importar o novo reducer criado.
+
+Arquivo `src/pages/Home/index.js` modificado para conectar-se com o Redux Store, ler o estado global e exibir a quantidade (amount) de produtos em seus respectivos botões. Também foi importada a ACTION `addToCart`, que é chamada ao clicar em cada botão de adicionar ao carrinho.
+
+---

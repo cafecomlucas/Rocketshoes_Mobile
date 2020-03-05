@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import api from '../../services/api';
 import {numberFormat} from '../../util/format';
+import {addToCart} from '../../store/modules/cart/actions';
 
 import {
   Container,
@@ -32,8 +34,14 @@ class Home extends Component {
     this.setState({products});
   }
 
+  handleAdd = product => {
+    const {dispatch} = this.props;
+    dispatch(addToCart(product));
+  };
+
   render() {
     const {products} = this.state;
+    const {amount} = this.props;
 
     return (
       <Container>
@@ -51,10 +59,10 @@ class Home extends Component {
               />
               <Title>{product.title}</Title>
               <Price>{product.formattedPrice}</Price>
-              <AddButton>
+              <AddButton onPress={() => this.handleAdd(product)}>
                 <AmountContainer>
                   <AddIcon name="add-shopping-cart" size={22} color="#fff" />
-                  <TextAmount> 3</TextAmount>
+                  <TextAmount> {amount[product.id] || 0}</TextAmount>
                 </AmountContainer>
                 <AddText>ADICIONAR</AddText>
               </AddButton>
@@ -66,4 +74,11 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  amount: state.cart.products.reduce((sumAmount, product) => {
+    sumAmount[product.id] = product.amount;
+    return sumAmount;
+  }, {}),
+});
+
+export default connect(mapStateToProps)(Home);
