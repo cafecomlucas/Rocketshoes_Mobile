@@ -239,7 +239,7 @@ Pasta `Header` com os arquivos `index.js` e `styles.js` criada na pasta `compone
 
 ## Cabeçalho | Implementação da navegação principal
 
-Diferente da versão Web, para implementar a navegação no ambiente mobile é necessário que o Header fique entro do Stack.Navigator (que é como se fosse o 'Switch' na versão web) para que o `onPress` funcione no `RectButton`.
+Diferente da versão Web, para implementar a navegação no ambiente mobile é necessário que o Header fique dentro do Stack.Navigator (que é como se fosse o 'Switch' na versão web) para que o `onPress` funcione no `RectButton`.
 
 Estrutura dos componentes `src/index.js`, `src/routes.js` e `src/components/Header` modificada para a navegação poder funcionar. Por conta da modificação foi possível mover o `NavigationContainer` pro componente `src/routes.js`.
 
@@ -313,5 +313,29 @@ react-native link
 Arquivo `src/util/format.js` criado com a configuração de formatação.
 
 Formatação importada e utilizada no arquivo `src/pages/Home/index.js`.
+
+---
+
+## Home | Correção na key informada pra FlatList
+
+Um erro no console indicou que o formato da key passado pra FlatList como Number estava errado, então o formato foi convertido pra String.
+
+---
+
+## Instalação do Redux e configuração do Redux Store
+
+Módulos do [Redux](https://redux.js.org/introduction/getting-started) e de integração do [Redux com o React](https://react-redux.js.org/introduction/quick-start) instalados:
+
+```bash
+yarn add redux react-redux
+```
+
+Arquivo `store/index/modules/rootReducers.js` criado com a exportação de todos os reducers (por equanto só existe um que retorna uma função com o retorno de um objeto vazio).
+
+Arquivo `store/index.js` criado com a inicialização da Redux Store após a importação dos reducers.
+
+Módulo App (arquivo `src/index`) modificado para importar o `Provider` do módulo `Redux` e o `store` do arquivo `src/store/index.js`.
+
+Estrutura modificada para envolver todos os elementos com o `Provider` informando o `store` via propriedade (disponibilizando o `Redux Store` pra toda a aplicação).
 
 ---
