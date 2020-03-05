@@ -41,7 +41,7 @@ class Home extends Component {
           data={products}
           horizontal
           showsHorizontalScrollIndicator
-          keyExtractor={product => product.id}
+          keyExtractor={product => String(product.id)}
           renderItem={({item: product}) => (
             <Product>
               <ProductImage

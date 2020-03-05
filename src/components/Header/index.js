@@ -15,7 +15,7 @@ import LogoRocketshoes from '../../assets/rocketshoes-logo.png';
 
 const Stack = createStackNavigator();
 
-console.tron.log(Stack.Navigator);
+// console.tron.log(Stack.Navigator);
 
 const Header = ({navigation}) => (
   <>
