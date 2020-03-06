@@ -413,3 +413,11 @@ Arquivo `src/pages/Cart/index.js` modificado. Método que chama a função que d
 Arquivo `src/pages/Cart/index.js` e `src/pages/Cart/styles.js` modificados para exibir um conteúdo alternativo quando o carrinho estiver vazio.
 
 ---
+
+## Cart | Exibição do subtotal e total de acordo com a quantidade de produtos
+
+Arquivo `src/pages/Cart/index.js` modificado para exibir o subtotal de cada produto com base na quantidade de produtos de cada item e também para exibir o total geral.
+
+Obs: Diferente da versão Web, o módulo Intl (do componente 'react-native-intl' na versão Mobile) é executado de forma assíncrona, então não foi possível fazer a formatação dos dados no mapStateToProps. Foi necessário transformar o Cart em um componente no formato de classe para utilizar o estado e os métodos do ciclo de vida para exibição dos dados formatados.
+
+---
