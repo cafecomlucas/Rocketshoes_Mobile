@@ -407,3 +407,9 @@ Arquivo `src/store/modules/cart/reducer.js` modificado. Foi incluída a condiç�
 Arquivo `src/pages/Cart/index.js` modificado. Método que chama a função que dispara a ACTION com o type `@cart/UPDATE_AMOUNT` criada e associada aos botões de aumentar e reduzir quantidade.
 
 ---
+
+## Cart | Exibição de conteúdo alternativo se carrinho for vazio
+
+Arquivo `src/pages/Cart/index.js` e `src/pages/Cart/styles.js` modificados para exibir um conteúdo alternativo quando o carrinho estiver vazio.
+
+---

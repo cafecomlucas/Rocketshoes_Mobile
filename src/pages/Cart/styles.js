@@ -9,6 +9,39 @@ export const Container = styled.View`
   padding: 15px;
 `;
 
+export const EmptyIcon = styled(Icon)`
+  color: #a0a0a0;
+  font-size: 64px;
+  text-align: center;
+`;
+export const NoProductsLine01 = styled.Text`
+  color: #333;
+  font-size: 32px;
+  line-height: 35px;
+  padding: 15px 0 5px 0;
+  text-align: center;
+`;
+export const NoProductsLine02 = styled.Text`
+  color: #333;
+  font-size: 22px;
+  line-height: 25px;
+  padding-bottom: 15px;
+  text-align: center;
+`;
+export const BackToHomeButton = styled(RectButton)`
+  background: #395c80;
+  border-radius: 4px;
+  padding: 12px 20px;
+  text-decoration: none;
+  margin: 15px auto 15px auto;
+`;
+export const BackToHomeButtonText = styled.Text`
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+`;
+
 export const ProductList = styled.FlatList`
   max-height: 300px;
 `;

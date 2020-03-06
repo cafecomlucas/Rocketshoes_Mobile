@@ -3,6 +3,11 @@ import {connect} from 'react-redux';
 
 import {
   Container,
+  EmptyIcon,
+  NoProductsLine01,
+  NoProductsLine02,
+  BackToHomeButton,
+  BackToHomeButtonText,
   ProductList,
   ProductContainer,
   ProductLine01,
@@ -30,7 +35,7 @@ import {
 
 import {removeFromCart, updateAmount} from '../../store/modules/cart/actions';
 
-const Cart = ({products, dispatch}) => {
+const Cart = ({products, navigation, cartSize, dispatch}) => {
   function handleDelete(id) {
     dispatch(removeFromCart(id));
   }
@@ -40,8 +45,16 @@ const Cart = ({products, dispatch}) => {
   function handleDecrement(product) {
     dispatch(updateAmount(product.id, product.amount - 1));
   }
-
-  return (
+  return cartSize <= 0 ? (
+    <Container>
+      <EmptyIcon name="remove-shopping-cart" />
+      <NoProductsLine01>Ops!</NoProductsLine01>
+      <NoProductsLine02>Carrinho vazio</NoProductsLine02>
+      <BackToHomeButton onPress={() => navigation.navigate('Home')}>
+        <BackToHomeButtonText>Adicionar um produto</BackToHomeButtonText>
+      </BackToHomeButton>
+    </Container>
+  ) : (
     <Container>
       <ProductList
         data={products}
@@ -93,6 +106,7 @@ const Cart = ({products, dispatch}) => {
 
 const mapStateToProps = state => ({
   products: state.cart.products,
+  cartSize: state.cart.products.length,
 });
 
 export default connect(mapStateToProps)(Cart);
