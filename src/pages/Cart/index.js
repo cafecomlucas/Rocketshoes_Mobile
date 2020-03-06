@@ -1,7 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import {
   Container,
+  ProductList,
   ProductContainer,
   ProductLine01,
   ProductInfo,
@@ -26,75 +28,48 @@ import {
   NextButtonText,
 } from './styles';
 
-const Cart = () => (
+const Cart = ({products}) => (
   <Container>
-    <ProductContainer>
-      <ProductLine01>
-        <ProductInfo>
-          <ProductImage
-            source={{
-              uri:
-                'https://static.netshoes.com.br/produtos/tenis-caminhada-detalhes-em-couro-masculino/06/E74-0492-006/E74-0492-006_detalhe2.jpg?ims=326x',
-            }}
-          />
-          <InfoContainer>
-            <Title>Tênis maneiromaneiro maneiro maneiro maneiro</Title>
-            <Price>R$ 179,90</Price>
-          </InfoContainer>
-        </ProductInfo>
-        <RemoveItemButton>
-          <RemoveItemIcon name="delete-forever" />
-        </RemoveItemButton>
-      </ProductLine01>
-      <ProductLine02>
-        <AmountContainer>
-          <RemoveAmountButton>
-            <RemoveAmountIcon name="remove-circle-outline" />
-          </RemoveAmountButton>
-          <InputAmount value="3" editable={false} />
-          <AddAmountButton>
-            <AddAmountIcon name="add-circle-outline" />
-          </AddAmountButton>
-        </AmountContainer>
-        <SubTotal>R$ 539,70</SubTotal>
-      </ProductLine02>
-    </ProductContainer>
-
-    <ProductContainer>
-      <ProductLine01>
-        <ProductInfo>
-          <ProductImage
-            source={{
-              uri:
-                'https://static.netshoes.com.br/produtos/tenis-caminhada-detalhes-em-couro-masculino/06/E74-0492-006/E74-0492-006_detalhe2.jpg?ims=326x',
-            }}
-          />
-          <InfoContainer>
-            <Title>Tênis maneiromaneiro maneiro maneiro maneiro</Title>
-            <Price>R$ 179,90</Price>
-          </InfoContainer>
-        </ProductInfo>
-        <RemoveItemButton>
-          <RemoveItemIcon name="delete-forever" />
-        </RemoveItemButton>
-      </ProductLine01>
-      <ProductLine02>
-        <AmountContainer>
-          <RemoveAmountButton>
-            <RemoveAmountIcon name="remove-circle-outline" />
-          </RemoveAmountButton>
-          <InputAmount value="3" editable={false} />
-          <AddAmountButton>
-            <AddAmountIcon name="add-circle-outline" />
-          </AddAmountButton>
-        </AmountContainer>
-        <SubTotal>R$ 539,70</SubTotal>
-      </ProductLine02>
-    </ProductContainer>
+    <ProductList
+      data={products}
+      keyExtractor={product => String(product.id)}
+      renderItem={({item: product}) => (
+        <ProductContainer>
+          <ProductLine01>
+            <ProductInfo>
+              <ProductImage
+                source={{
+                  uri: product.image,
+                }}
+              />
+              <InfoContainer>
+                <Title>{product.title}</Title>
+                <Price>{product.formattedPrice}</Price>
+              </InfoContainer>
+            </ProductInfo>
+            <RemoveItemButton>
+              <RemoveItemIcon name="delete-forever" />
+            </RemoveItemButton>
+          </ProductLine01>
+          <ProductLine02>
+            <AmountContainer>
+              <RemoveAmountButton>
+                <RemoveAmountIcon name="remove-circle-outline" />
+              </RemoveAmountButton>
+              <InputAmount value={String(product.amount)} editable={false} />
+              <AddAmountButton>
+                <AddAmountIcon name="add-circle-outline" />
+              </AddAmountButton>
+            </AmountContainer>
+            <SubTotal>R$ 000,00</SubTotal>
+          </ProductLine02>
+        </ProductContainer>
+      )}
+    />
 
     <TotalContainer>
       <TotalTitle>Total</TotalTitle>
-      <TotalPrice>R$ 1619,10</TotalPrice>
+      <TotalPrice>R$ 0000,00</TotalPrice>
       <NextButton>
         <NextButtonText>Finalizar Pedido</NextButtonText>
       </NextButton>
@@ -102,4 +77,8 @@ const Cart = () => (
   </Container>
 );
 
-export default Cart;
+const mapStateToProps = state => ({
+  products: state.cart.products,
+});
+
+export default connect(mapStateToProps)(Cart);

@@ -9,6 +9,10 @@ export const Container = styled.View`
   padding: 15px;
 `;
 
+export const ProductList = styled.FlatList`
+  max-height: 300px;
+`;
+
 export const ProductContainer = styled.View`
   margin-bottom: 15px;
 `;

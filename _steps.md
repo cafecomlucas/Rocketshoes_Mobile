@@ -381,3 +381,9 @@ Arquivo `src/pages/Home/index.js` modificado para conectar-se com o Redux Store,
 Arquivo `src/components/Header/index.js` modificado para ler o estado global da Redux Store e exibir a quantidade de itens atuais no carrinho.
 
 ---
+
+## Cart | Listando produtos adicionados ao carrinho
+
+Arquivo `src/pages/Cart/index.js` modificado para ler o estado global da Redux Store e listar cada item adicionado ao carrinho.
+
+---
