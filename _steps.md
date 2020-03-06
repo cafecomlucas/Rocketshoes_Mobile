@@ -394,6 +394,16 @@ Arquivo `src/store/modules/cart/actions.js` modificado. Foi incluída uma funç�
 
 Arquivo `src/store/modules/cart/reducer.js` modificado. Foi incluída a condição do type `@cart/REMOVE` para remover um item da lista de produtos do carrinho.
 
-Arquivo `src/pages/Cart/index.js` modificado. Função que dispara a ACTION com o type `@cart/REMOVE` criada e associada ao botão de deletar item.
+Arquivo `src/pages/Cart/index.js` modificado. Método que chama a função que dispara a ACTION com o type `@cart/REMOVE` criada e associada ao botão de deletar item.
+
+---
+
+## Cart | Atualizando quantidade de item específico
+
+Arquivo `src/store/modules/cart/actions.js` modificado. Foi incluída uma função que retorna a ACTION com o type `@cart/UPDATE_AMOUNT`.
+
+Arquivo `src/store/modules/cart/reducer.js` modificado. Foi incluída a condição do type `@cart/UPDATE_AMOUNT` para atualizar um item da lista de produtos do carrinho.
+
+Arquivo `src/pages/Cart/index.js` modificado. Método que chama a função que dispara a ACTION com o type `@cart/UPDATE_AMOUNT` criada e associada aos botões de aumentar e reduzir quantidade.
 
 ---

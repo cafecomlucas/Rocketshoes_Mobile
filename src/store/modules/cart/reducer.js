@@ -29,6 +29,16 @@ export default function cart(
           draft.products.splice(productIndex, 1);
         }
       });
+    case '@cart/UPDATE_AMOUNT': {
+      return produce(state, draft => {
+        if (action.amount <= 0) return;
+        const productIndex = draft.products.findIndex(p => p.id === action.id);
+
+        if (productIndex >= 0) {
+          draft.products[productIndex].amount = Number(action.amount);
+        }
+      });
+    }
     default:
       return state;
   }

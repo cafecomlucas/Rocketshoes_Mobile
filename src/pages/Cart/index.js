@@ -28,11 +28,17 @@ import {
   NextButtonText,
 } from './styles';
 
-import {removeFromCart} from '../../store/modules/cart/actions';
+import {removeFromCart, updateAmount} from '../../store/modules/cart/actions';
 
 const Cart = ({products, dispatch}) => {
   function handleDelete(id) {
     dispatch(removeFromCart(id));
+  }
+  function handleIncrement(product) {
+    dispatch(updateAmount(product.id, product.amount + 1));
+  }
+  function handleDecrement(product) {
+    dispatch(updateAmount(product.id, product.amount - 1));
   }
 
   return (
@@ -60,11 +66,11 @@ const Cart = ({products, dispatch}) => {
             </ProductLine01>
             <ProductLine02>
               <AmountContainer>
-                <RemoveAmountButton>
+                <RemoveAmountButton onPress={() => handleDecrement(product)}>
                   <RemoveAmountIcon name="remove-circle-outline" />
                 </RemoveAmountButton>
                 <InputAmount value={String(product.amount)} editable={false} />
-                <AddAmountButton>
+                <AddAmountButton onPress={() => handleIncrement(product)}>
                   <AddAmountIcon name="add-circle-outline" />
                 </AddAmountButton>
               </AmountContainer>
