@@ -231,13 +231,13 @@ Consulta de ícones disponíveis em: https://oblador.github.io/react-native-vect
 
 ---
 
-## Cabeçalho | Criação da estrutura e estilização
+## Header | Criação da estrutura e estilização
 
 Pasta `Header` com os arquivos `index.js` e `styles.js` criada na pasta `components` e importado para o App (`src/index.js`). Foi criada a estrutura e a estilização do logo e do ícone do carrinho.
 
 ---
 
-## Cabeçalho | Implementação da navegação principal
+## Header | Implementação da navegação principal
 
 Diferente da versão Web, para implementar a navegação no ambiente mobile é necessário que o Header fique dentro do Stack.Navigator (que é como se fosse o 'Switch' na versão web) para que o `onPress` funcione no `RectButton`.
 
@@ -385,5 +385,15 @@ Arquivo `src/components/Header/index.js` modificado para ler o estado global da 
 ## Cart | Listando produtos adicionados ao carrinho
 
 Arquivo `src/pages/Cart/index.js` modificado para ler o estado global da Redux Store e listar cada item adicionado ao carrinho.
+
+---
+
+## Cart | Removendo item da lista
+
+Arquivo `src/store/modules/cart/actions.js` modificado. Foi incluída uma função que retorna a ACTION com o type `@cart/REMOVE`.
+
+Arquivo `src/store/modules/cart/reducer.js` modificado. Foi incluída a condição do type `@cart/REMOVE` para remover um item da lista de produtos do carrinho.
+
+Arquivo `src/pages/Cart/index.js` modificado. Função que dispara a ACTION com o type `@cart/REMOVE` criada e associada ao botão de deletar item.
 
 ---
