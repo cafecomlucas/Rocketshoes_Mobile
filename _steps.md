@@ -375,3 +375,9 @@ Arquivo `src/store/modules/rootReducers.js` modificado para importar o novo redu
 Arquivo `src/pages/Home/index.js` modificado para conectar-se com o Redux Store, ler o estado global e exibir a quantidade (amount) de produtos em seus respectivos botões. Também foi importada a ACTION `addToCart`, que é chamada ao clicar em cada botão de adicionar ao carrinho.
 
 ---
+
+## Header | Exibindo quantidade de itens atuais no carrinho
+
+Arquivo `src/components/Header/index.js` modificado para ler o estado global da Redux Store e exibir a quantidade de itens atuais no carrinho.
+
+---

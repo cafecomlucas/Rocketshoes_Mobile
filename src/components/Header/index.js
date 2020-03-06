@@ -1,5 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {connect} from 'react-redux';
 
 import Home from '../../pages/Home';
 import Cart from '../../pages/Cart';
@@ -17,7 +18,7 @@ const Stack = createStackNavigator();
 
 // console.tron.log(Stack.Navigator);
 
-const Header = ({navigation}) => (
+const Header = ({navigation, cartSize}) => (
   <>
     <HeaderNav>
       <LogoButton onPress={() => navigation.navigate('Home')}>
@@ -25,7 +26,7 @@ const Header = ({navigation}) => (
       </LogoButton>
       <CartButton onPress={() => navigation.navigate('Cart')}>
         <CartIcon name="shopping-basket" />
-        <CartButtonText>0</CartButtonText>
+        <CartButtonText>{cartSize}</CartButtonText>
       </CartButton>
     </HeaderNav>
     <Stack.Navigator
@@ -41,4 +42,8 @@ const Header = ({navigation}) => (
   </>
 );
 
-export default Header;
+const mapStateToProps = state => ({
+  cartSize: state.cart.products.length,
+});
+
+export default connect(mapStateToProps)(Header);
