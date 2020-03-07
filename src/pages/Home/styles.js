@@ -1,6 +1,17 @@
 import styled from 'styled-components/native';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {ActivityIndicator} from 'react-native';
+
+export const ContainerLoading = styled.View`
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+`;
+
+export const LoadingIcon = styled(ActivityIndicator)`
+  margin-top: 20px;
+`;
 
 export const Container = styled.View`
   margin: 20px 15px;

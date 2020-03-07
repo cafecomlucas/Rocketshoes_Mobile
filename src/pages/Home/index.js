@@ -6,6 +6,8 @@ import {addToCartRequest} from '../../store/modules/cart/actions';
 
 import {
   Container,
+  ContainerLoading,
+  LoadingIcon,
   ProductList,
   Product,
   ProductImage,
@@ -21,17 +23,13 @@ import {
 class Home extends Component {
   state = {
     products: [],
+    loadingProducts: true,
   };
 
   async componentDidMount() {
-    const response = await api.get('products');
-    const products = await Promise.all(
-      response.data.map(async product => ({
-        ...product,
-        /*   formattedPrice: await numberFormat.format(product.price), */
-      }))
-    );
-    this.setState({products});
+    const {data} = await api.get('products');
+    const products = data;
+    this.setState({products, loadingProducts: false});
   }
 
   handleAdd = id => {
@@ -40,10 +38,14 @@ class Home extends Component {
   };
 
   render() {
-    const {products} = this.state;
+    const {products, loadingProducts} = this.state;
     const {amount} = this.props;
 
-    return (
+    return loadingProducts ? (
+      <ContainerLoading>
+        <LoadingIcon size={32} color="#FFF" />
+      </ContainerLoading>
+    ) : (
       <IntlProvider locale="pt-BR">
         <Container>
           <ProductList

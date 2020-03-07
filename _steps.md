@@ -501,3 +501,9 @@ Arquivo `src/store/modules/cart/reducer.js` modificado. O type foi alterado para
 Arquivo `src/pages/Cart/index.js` modificado para chamar o `updateAmountRequest` (ao invés do `updateAmount`), informando o `id` e a quantidade seguinte utilizados pelo `updateAmountSaga`.
 
 ---
+
+## Home | Exibindo status de carregamento até o retorno da API
+
+Arquivos `src/pages/Home/index.js` e `src/pages/Home/styles.js` modificados para mostrar o `ActivityIndicator` (ícone de carregamento) enquanto os dados dos produtos são carregados da API.
+
+---
