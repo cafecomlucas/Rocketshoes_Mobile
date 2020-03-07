@@ -34,3 +34,11 @@ export function updateAmountSuccess(id, amount) {
     amount,
   };
 }
+
+export function updateLoading(id, status) {
+  return {
+    type: '@cart/UPDATE_LOADING',
+    id,
+    status,
+  };
+}

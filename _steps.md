@@ -470,7 +470,7 @@ Arquivo `src/store/index.js` modificado. A constante `sagaMonitor` foi inicializ
 
 ---
 
-## Home | Saga | Consulta estoque e define quantidade antes de adicionar
+## Home | Cart Action/Saga | Consulta estoque e define quantidade antes de adicionar
 
 Arquivo `src/store/modules/cart/actions.js` modificado. A função `addToCart` foi dividida em duas, `addToCartRequest` (que recebe apenas o id do produto) e `addToCartSuccess` (que continua recebendo o produto).
 
@@ -490,7 +490,7 @@ Arquivo `src/store/modules/cart/sagas.js` modificado para exibir um alerta quand
 
 ---
 
-## Cart | Saga | Consulta estoque antes de atualizar quantidade
+## Cart | Cart Action/Saga | Consulta estoque antes de atualizar quantidade
 
 Arquivo `src/store/modules/cart/actions.js` modificado. A função `updateAmount` foi dividida em duas, `updateAmountRequest` e `updateAmountSuccess` (que continuam recebendo o id do produto e a quantidade seguinte).
 
@@ -502,8 +502,20 @@ Arquivo `src/pages/Cart/index.js` modificado para chamar o `updateAmountRequest`
 
 ---
 
-## Home | Exibindo status de carregamento até o retorno da API
+## Home | Exibindo status de carregamento inicial até o retorno da API
 
 Arquivos `src/pages/Home/index.js` e `src/pages/Home/styles.js` modificados para mostrar o `ActivityIndicator` (ícone de carregamento) enquanto os dados dos produtos são carregados da API.
+
+---
+
+## Home | Cart Action/Reducer/Saga | Exibindo status de carregamento de cada produto até retorno da API
+
+Arquivo `src/store/modules/cart/actions.js` modificado. A função `updateLoading` foi adicionada para disparar uma ACTION com o id do produto, o status de carregamento do mesmo e o type `@cart/UPDATE_LOADING`.
+
+Arquivo `src/store/modules/cart/reducer.js` modificado. Lista `loading` adicionada com o valor inicial na inicialização do Cart REDUCER. Também foi adicionada a regra com o type `@cart/UPDATE_LOADING`, que adiciona um novo objeto na lista `loading` com o `id` do produto e o status de carregamento.
+
+Arquivo `src/store/modules/cart/sagas.js` modificado. Na função `addToCartSaga` a função `updateLoading` é chamada no início passando o `id` do produto e o status `true` antes de qualquer ação e chamado novamente com o status `false` após a execução de todas as ações.
+
+Arquivos `src/pages/Home/index.js` e `src/pages/Home/styles.js` modificados. A estrutura e a estilização foram alterados para deixar o botão do produto cinza e com um ícone de carregamento quando clicado (até a conclusão da operação). A lista `loading` é utilizada para alterar a estilização e a funcionalidade de cada botão condicionalmente.
 
 ---

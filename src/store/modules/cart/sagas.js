@@ -2,10 +2,12 @@ import {Alert} from 'react-native';
 import {call, put, all, select, takeLatest} from 'redux-saga/effects';
 import api from '../../../services/api';
 
-import {addToCartSuccess, updateAmountSuccess} from './actions';
+import {addToCartSuccess, updateAmountSuccess, updateLoading} from './actions';
 
 function* addToCartSaga(action) {
   const {id} = action;
+
+  yield put(updateLoading(id, true));
 
   const productExists = yield select(state =>
     state.cart.products.find(p => p.id === id)
@@ -20,6 +22,7 @@ function* addToCartSaga(action) {
 
   if (nextAmount > stockAmount) {
     Alert.alert('Atenção', 'Quantidade indisponível');
+    yield put(updateLoading(id, false));
     return;
   }
 
@@ -33,6 +36,7 @@ function* addToCartSaga(action) {
     };
     yield put(addToCartSuccess(product));
   }
+  yield put(updateLoading(id, false));
 }
 
 function* updateAmountSaga(action) {

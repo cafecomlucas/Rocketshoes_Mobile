@@ -14,6 +14,7 @@ import {
   Title,
   Price,
   AddButton,
+  LoadingButtonIcon,
   AmountContainer,
   AddIcon,
   TextAmount,
@@ -33,13 +34,16 @@ class Home extends Component {
   }
 
   handleAdd = id => {
-    const {dispatch} = this.props;
+    const {loading, dispatch} = this.props;
+
+    if (loading[id]) return;
+
     dispatch(addToCartRequest(id));
   };
 
   render() {
     const {products, loadingProducts} = this.state;
-    const {amount} = this.props;
+    const {amount, loading} = this.props;
 
     return loadingProducts ? (
       <ContainerLoading>
@@ -68,9 +72,20 @@ class Home extends Component {
                     currency="BRL"
                   />
                 </Price>
-                <AddButton onPress={() => this.handleAdd(product.id)}>
+                <AddButton
+                  loading-data={loading[product.id]}
+                  onPress={() => this.handleAdd(product.id)}>
                   <AmountContainer>
-                    <AddIcon name="add-shopping-cart" size={22} color="#fff" />
+                    {loading[product.id] ? (
+                      <LoadingButtonIcon size={22} color="#FFF" />
+                    ) : (
+                      <AddIcon
+                        name="add-shopping-cart"
+                        size={22}
+                        color="#fff"
+                      />
+                    )}
+
                     <TextAmount> {amount[product.id] || 0}</TextAmount>
                   </AmountContainer>
                   <AddText>ADICIONAR</AddText>
@@ -88,6 +103,10 @@ const mapStateToProps = state => ({
   amount: state.cart.products.reduce((sumAmount, product) => {
     sumAmount[product.id] = product.amount;
     return sumAmount;
+  }, {}),
+  loading: state.cart.loading.reduce((loading, product) => {
+    loading[product.id] = product.status;
+    return loading;
   }, {}),
 });
 
