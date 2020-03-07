@@ -516,6 +516,14 @@ Arquivo `src/store/modules/cart/reducer.js` modificado. Lista `loading` adiciona
 
 Arquivo `src/store/modules/cart/sagas.js` modificado. Na função `addToCartSaga` a função `updateLoading` é chamada no início passando o `id` do produto e o status `true` antes de qualquer ação e chamado novamente com o status `false` após a execução de todas as ações.
 
-Arquivos `src/pages/Home/index.js` e `src/pages/Home/styles.js` modificados. A estrutura e a estilização foram alterados para deixar o botão do produto cinza e com um ícone de carregamento quando clicado (até a conclusão da operação). A lista `loading` é utilizada para alterar a estilização e a funcionalidade de cada botão condicionalmente.
+Arquivos `src/pages/Home/index.js` e `src/pages/Home/styles.js` modificados. A estrutura e a estilização foram alterados para deixar o botão do produto cinza e com um ícone de carregamento quando tocado (até a conclusão da operação). A lista `loading` é utilizada para alterar a estilização e a funcionalidade de cada botão condicionalmente.
+
+---
+
+## Cart | Cart Saga | Exibindo status de carregamento de cada produto até retorno da API
+
+Arquivo `src/store/modules/cart/sagas.js` modificado. Na função `updateAmountSaga` a função `updateLoading` é chamada no início passando o `id` do produto e o status `true` antes de qualquer ação e chamado novamente com o status `false` após a execução de todas as ações.
+
+Arquivos `src/pages/Cart/index.js` e `src/pages/Cart/styles.js` modificados. A estrutura e a estilização foram alterados para deixar os botões de remover/adicionar produto cinzas quando tocados (até a conclusão da operação). A lista `loading` é utilizada para alterar a estilização e a funcionalidade de cada botão condicionalmente.
 
 ---

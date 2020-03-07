@@ -42,6 +42,7 @@ function* addToCartSaga(action) {
 function* updateAmountSaga(action) {
   const {id, amount: nextAmount} = action;
   if (nextAmount <= 0) return;
+  yield put(updateLoading(id, true));
 
   const {
     data: {amount: stockAmount},
@@ -49,9 +50,11 @@ function* updateAmountSaga(action) {
 
   if (nextAmount > stockAmount) {
     Alert.alert('Atenção', 'Quantidade indisponível');
+    yield put(updateLoading(id, false));
     return;
   }
   yield put(updateAmountSuccess(id, nextAmount));
+  yield put(updateLoading(id, false));
 }
 
 export default all([

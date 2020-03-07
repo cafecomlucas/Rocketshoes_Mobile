@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, {css} from 'styled-components/native';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -98,16 +98,32 @@ export const AmountContainer = styled.View`
   align-items: center;
 `;
 export const RemoveAmountButton = styled(RectButton)``;
-export const RemoveAmountIcon = styled(Icon)`
+export const RemoveAmountIcon = styled(Icon).attrs(props => ({
+  disabled: props['loading-data'],
+}))`
   color: #395c80;
   font-size: 22px;
   padding: 4px;
+  ${props =>
+    props.disabled &&
+    css`
+      color: #bdbdbd;
+      opacity: 0.6;
+    `}
 `;
 export const AddAmountButton = styled(RectButton)``;
-export const AddAmountIcon = styled(Icon)`
+export const AddAmountIcon = styled(Icon).attrs(props => ({
+  disabled: props['loading-data'],
+}))`
   color: #395c80;
   font-size: 22px;
   padding: 4px;
+  ${props =>
+    props.disabled &&
+    css`
+      color: #bdbdbd;
+      opacity: 0.6;
+    `}
 `;
 export const InputAmount = styled.TextInput`
   font-size: 14px;

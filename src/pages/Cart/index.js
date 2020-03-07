@@ -39,17 +39,27 @@ import {
   updateAmountRequest,
 } from '../../store/modules/cart/actions';
 
-const Cart = ({dispatch, navigation, cartSize, products, productsTotal}) => {
+const Cart = ({
+  dispatch,
+  navigation,
+  cartSize,
+  products,
+  loading,
+  productsTotal,
+}) => {
   function handleDelete(id) {
+    if (loading[id]) return;
     dispatch(removeFromCart(id));
   }
 
-  function handleIncrement(product) {
-    dispatch(updateAmountRequest(product.id, product.amount + 1));
+  function handleIncrement({id, amount}) {
+    if (loading[id]) return;
+    dispatch(updateAmountRequest(id, amount + 1));
   }
 
-  function handleDecrement(product) {
-    dispatch(updateAmountRequest(product.id, product.amount - 1));
+  function handleDecrement({id, amount}) {
+    if (loading[id]) return;
+    dispatch(updateAmountRequest(id, amount - 1));
   }
 
   return cartSize <= 0 ? (
@@ -94,14 +104,20 @@ const Cart = ({dispatch, navigation, cartSize, products, productsTotal}) => {
               <ProductLine02>
                 <AmountContainer>
                   <RemoveAmountButton onPress={() => handleDecrement(product)}>
-                    <RemoveAmountIcon name="remove-circle-outline" />
+                    <RemoveAmountIcon
+                      loading-data={loading[product.id]}
+                      name="remove-circle-outline"
+                    />
                   </RemoveAmountButton>
                   <InputAmount
                     value={String(product.amount)}
                     editable={false}
                   />
                   <AddAmountButton onPress={() => handleIncrement(product)}>
-                    <AddAmountIcon name="add-circle-outline" />
+                    <AddAmountIcon
+                      loading-data={loading[product.id]}
+                      name="add-circle-outline"
+                    />
                   </AddAmountButton>
                 </AmountContainer>
                 <SubTotal>
@@ -141,6 +157,11 @@ const mapStateToProps = state => ({
     ...product,
     subTotal: product.price * product.amount,
   })),
+
+  loading: state.cart.loading.reduce((loading, product) => {
+    loading[product.id] = product.status;
+    return loading;
+  }, {}),
 
   productsTotal: state.cart.products.reduce(
     (sumTotal, product) => sumTotal + product.price * product.amount,
