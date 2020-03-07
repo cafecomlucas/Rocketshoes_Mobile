@@ -455,3 +455,17 @@ Arquivo `src/store/modules/rootSagas.js` criado com a exportação de todos os s
 Arquivo `src/store/index.js` modificado para fazer a importação e a execução dos sagas.
 
 ---
+
+## Instalação/Configuração do módulo de integração do Reactrotron com o Redux Saga
+
+Para facilitar a visualização do fluxo da aplicação instalamos o módulo que integra o Redux Saga com o Reactotron:
+
+```bash
+yarn add reactotron-redux-saga
+```
+
+Arquivo `config/ReactotronConfig.js` modificado. Módulo `reactotron-redux-saga` inicializado através do método `use` do Reactotron.
+
+Arquivo `src/store/index.js` modificado. A constante `sagaMonitor` foi inicializada e passada como parâmetro pro método createSagaMiddleware com um valor válido em ambiente de desenvolvimento.
+
+---
