@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-
-import {numberFormat} from '../../util/format';
+import {IntlProvider, FormattedNumber} from 'react-intl';
 
 import {
   Container,
@@ -37,77 +36,30 @@ import {
 
 import {removeFromCart, updateAmount} from '../../store/modules/cart/actions';
 
-class Cart extends Component {
-  state = {
-    formattedSubTotal: {},
-    formattedTotal: 0,
-  };
-
-  async componentDidMount() {
-    const {products, productsTotal} = this.props;
-
-    const formattedSubTotal = await this.formatSubTotals(products);
-
-    const formattedTotal = await numberFormat.format(productsTotal);
-
-    this.setState({formattedSubTotal, formattedTotal});
-  }
-
-  async componentDidUpdate(prevProps) {
-    const {products, productsTotal} = this.props;
-
-    if (prevProps.products !== products) {
-      const formattedSubTotal = await this.formatSubTotals(products);
-      this.setState({formattedSubTotal});
-    }
-
-    if (prevProps.productsTotal !== productsTotal) {
-      const formattedTotal = await numberFormat.format(productsTotal);
-      this.setState({formattedTotal});
-    }
-  }
-
-  async formatSubTotals(products) {
-    this.formattedSubTotal = {};
-    await Promise.all(
-      products.map(async product => {
-        this.formattedSubTotal[product.id] = await numberFormat.format(
-          product.subTotal
-        );
-      })
-    );
-    return this.formattedSubTotal;
-  }
-
-  handleDelete(id) {
-    const {dispatch} = this.props;
+const Cart = ({dispatch, navigation, cartSize, products, productsTotal}) => {
+  function handleDelete(id) {
     dispatch(removeFromCart(id));
   }
 
-  handleIncrement(product) {
-    const {dispatch} = this.props;
+  function handleIncrement(product) {
     dispatch(updateAmount(product.id, product.amount + 1));
   }
 
-  handleDecrement(product) {
-    const {dispatch} = this.props;
+  function handleDecrement(product) {
     dispatch(updateAmount(product.id, product.amount - 1));
   }
 
-  render() {
-    const {navigation, cartSize, products} = this.props;
-    const {formattedSubTotal, formattedTotal} = this.state;
-
-    return cartSize <= 0 ? (
-      <Container>
-        <EmptyIcon name="remove-shopping-cart" />
-        <NoProductsLine01>Ops!</NoProductsLine01>
-        <NoProductsLine02>Carrinho vazio</NoProductsLine02>
-        <BackToHomeButton onPress={() => navigation.navigate('Home')}>
-          <BackToHomeButtonText>Adicionar um produto</BackToHomeButtonText>
-        </BackToHomeButton>
-      </Container>
-    ) : (
+  return cartSize <= 0 ? (
+    <Container>
+      <EmptyIcon name="remove-shopping-cart" />
+      <NoProductsLine01>Ops!</NoProductsLine01>
+      <NoProductsLine02>Carrinho vazio</NoProductsLine02>
+      <BackToHomeButton onPress={() => navigation.navigate('Home')}>
+        <BackToHomeButtonText>Adicionar um produto</BackToHomeButtonText>
+      </BackToHomeButton>
+    </Container>
+  ) : (
+    <IntlProvider locale="pt-BR">
       <Container>
         <ProductList
           data={products}
@@ -123,29 +75,39 @@ class Cart extends Component {
                   />
                   <InfoContainer>
                     <Title>{product.title}</Title>
-                    <Price>{product.formattedPrice}</Price>
+                    <Price>
+                      <FormattedNumber
+                        value={product.price}
+                        style="currency"
+                        currency="BRL"
+                      />
+                    </Price>
                   </InfoContainer>
                 </ProductInfo>
-                <RemoveItemButton onPress={() => this.handleDelete(product.id)}>
+                <RemoveItemButton onPress={() => handleDelete(product.id)}>
                   <RemoveItemIcon name="delete-forever" />
                 </RemoveItemButton>
               </ProductLine01>
               <ProductLine02>
                 <AmountContainer>
-                  <RemoveAmountButton
-                    onPress={() => this.handleDecrement(product)}>
+                  <RemoveAmountButton onPress={() => handleDecrement(product)}>
                     <RemoveAmountIcon name="remove-circle-outline" />
                   </RemoveAmountButton>
                   <InputAmount
                     value={String(product.amount)}
                     editable={false}
                   />
-                  <AddAmountButton
-                    onPress={() => this.handleIncrement(product)}>
+                  <AddAmountButton onPress={() => handleIncrement(product)}>
                     <AddAmountIcon name="add-circle-outline" />
                   </AddAmountButton>
                 </AmountContainer>
-                <SubTotal>{formattedSubTotal[product.id]}</SubTotal>
+                <SubTotal>
+                  <FormattedNumber
+                    value={product.subTotal}
+                    style="currency"
+                    currency="BRL"
+                  />
+                </SubTotal>
               </ProductLine02>
             </ProductContainer>
           )}
@@ -153,22 +115,30 @@ class Cart extends Component {
 
         <TotalContainer>
           <TotalTitle>Total</TotalTitle>
-          <TotalPrice>{formattedTotal}</TotalPrice>
+          <TotalPrice>
+            <FormattedNumber
+              value={productsTotal}
+              style="currency"
+              currency="BRL"
+            />
+          </TotalPrice>
           <NextButton>
             <NextButtonText>Finalizar Pedido</NextButtonText>
           </NextButton>
         </TotalContainer>
       </Container>
-    );
-  }
-}
+    </IntlProvider>
+  );
+};
 
 const mapStateToProps = state => ({
+  cartSize: state.cart.products.length,
+
   products: state.cart.products.map(product => ({
     ...product,
     subTotal: product.price * product.amount,
   })),
-  cartSize: state.cart.products.length,
+
   productsTotal: state.cart.products.reduce(
     (sumTotal, product) => sumTotal + product.price * product.amount,
     0

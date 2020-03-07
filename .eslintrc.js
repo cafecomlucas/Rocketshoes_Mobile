@@ -24,5 +24,6 @@ module.exports = {
     'react/state-in-constructor': 'off',
     'no-console': ['error', {allow: ['tron']}],
     'no-param-reassign': 'off',
+    'react/style-prop-object': 'off',
   },
 };

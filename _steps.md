@@ -421,3 +421,23 @@ Arquivo `src/pages/Cart/index.js` modificado para exibir o subtotal de cada prod
 Obs: Diferente da versão Web, o módulo Intl (do componente 'react-native-intl' na versão Mobile) é executado de forma assíncrona, então não foi possível fazer a formatação dos dados no mapStateToProps. Foi necessário transformar o Cart em um componente no formato de classe para utilizar o estado e os métodos do ciclo de vida para exibição dos dados formatados.
 
 ---
+
+## Intercionalização | Trocando a biblioteca utilizada
+
+Devido ao delay causado pelo módulo 'react-native-intl', substituimos pelo módullo [react-intl](https://github.com/formatjs/react-intl/blob/master/docs/Getting-Started.md#react-native).
+
+```bash
+yarn remove react-native-intl
+yarn add react-intl
+```
+
+Para funcionar também foi necessário configurar a [intercionalização](https://github.com/react-native-community/jsc-android-buildscripts#international-variant) no ambiente mobile (que fica desativado por padrão). Arquivo `android/app/build.gradle` modificado:
+
+```
+- def jscFlavor = 'org.webkit:android-jsc:+'
++ def jscFlavor = 'org.webkit:android-jsc-intl:+'
+```
+
+O arquivo `.eslintrc.js` também foi modificado para que a utilização propriedade style (pelo módulo react-intl) não indique erro.
+
+---
