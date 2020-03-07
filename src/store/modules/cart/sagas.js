@@ -2,7 +2,7 @@ import {Alert} from 'react-native';
 import {call, put, all, select, takeLatest} from 'redux-saga/effects';
 import api from '../../../services/api';
 
-import {addToCartSuccess, updateAmount} from './actions';
+import {addToCartSuccess, updateAmountSuccess} from './actions';
 
 function* addToCartSaga(action) {
   const {id} = action;
@@ -24,7 +24,7 @@ function* addToCartSaga(action) {
   }
 
   if (productExists) {
-    yield put(updateAmount(id, nextAmount));
+    yield put(updateAmountSuccess(id, nextAmount));
   } else {
     const {data} = yield call(api.get, `/products/${id}`);
     const product = {
@@ -35,4 +35,22 @@ function* addToCartSaga(action) {
   }
 }
 
-export default all([takeLatest('@cart/ADD_REQUEST', addToCartSaga)]);
+function* updateAmountSaga(action) {
+  const {id, amount: nextAmount} = action;
+  if (nextAmount <= 0) return;
+
+  const {
+    data: {amount: stockAmount},
+  } = yield call(api.get, `/stock/${id}`);
+
+  if (nextAmount > stockAmount) {
+    Alert.alert('Atenção', 'Quantidade indisponível');
+    return;
+  }
+  yield put(updateAmountSuccess(id, nextAmount));
+}
+
+export default all([
+  takeLatest('@cart/ADD_REQUEST', addToCartSaga),
+  takeLatest('@cart/UPDATE_AMOUNT_REQUEST', updateAmountSaga),
+]);

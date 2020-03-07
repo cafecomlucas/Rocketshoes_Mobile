@@ -470,16 +470,34 @@ Arquivo `src/store/index.js` modificado. A constante `sagaMonitor` foi inicializ
 
 ---
 
-## Home (Saga) | Consulta estoque e define quantidade antes de adicionar
+## Home | Saga | Consulta estoque e define quantidade antes de adicionar
 
 Arquivo `src/store/modules/cart/actions.js` modificado. A função `addToCart` foi dividida em duas, `addToCartRequest` (que recebe apenas o id do produto) e `addToCartSuccess` (que continua recebendo o produto).
 
-Arquivo `src/store/modules/cart/sagas.js` criado. Foi adicionado o primeiro Saga de Cart (`addToCartSaga`) e associado ao disparo da Action `@cart/ADD_REQUEST`. Esse Saga verificar se o produto existe no carrinho, define a próxima quantidade de itens (amount) com base nessa informação, faz a busca da quantidade do produto no estoque com base no `id` recebido e compara para ver se não ultrapassou a quantidade máxima antes de buscar mais informações do produto e adiciona-lo ao carrinho através da função `addToCartSuccess` (caso ele não exista) ou apenas atualizar sem buscar mais informações através da função `updateAmount` (caso ele já exista).
+Arquivo `src/store/modules/cart/sagas.js` criado. Foi adicionado o primeiro Saga de Cart (`addToCartSaga`) e associado ao disparo da Action `@cart/ADD_REQUEST`. Esse Saga verifica se o produto existe no carrinho, define a próxima quantidade de itens (amount) com base nessa informação, faz a busca de quantidade em estoque via API (com base no `id` recebido) e compara para ver se não ultrapassou a quantidade máxima antes de buscar mais informações do produto e adiciona-lo ao carrinho através da função `addToCartSuccess` (caso ele não exista) ou apenas atualizar sem buscar mais informações através da função `updateAmount` (caso ele já exista).
 
 Arquivo `src/store/rootSagas.js` modificado para importar o Cart Sagas.
 
-Arquivo `src/store/modules/cart/reducer.js` modificado. Como a verificação de existencia do produto no carrinho e definição da quantidade (amount) agora é feita no `addToCartSaga`, o reducer com o type `@cart/ADD_SUCCESS` ficou responsável apenas por adicionar o item no carrinho.
+Arquivo `src/store/modules/cart/reducer.js` modificado. O type foi alterado para `@cart/ADD_SUCCESS` (disparado pelo `addToCartSaga`). Como a verificação de existência do produto no carrinho e definição da quantidade (amount) agora é feita no `addToCartSaga`, o reducer com o type `@cart/ADD_SUCCESS` ficou responsável apenas por adicionar o item no carrinho.
 
 Arquivo `src/pages/Home/index.js` modificado para chamar o `addToCartRequest` (ao invés do `addToCart`), informando o `id` a ser utilizado pelo `addToCartSaga`.
+
+---
+
+## Home | Exibindo alerta quando a quantidade no estoque for atingida
+
+Arquivo `src/store/modules/cart/sagas.js` modificado para exibir um alerta quando a quantidade de itens limite for atingida.
+
+---
+
+## Cart | Saga | Consulta estoque antes de atualizar quantidade
+
+Arquivo `src/store/modules/cart/actions.js` modificado. A função `updateAmount` foi dividida em duas, `updateAmountRequest` e `updateAmountSuccess` (que continuam recebendo o id do produto e a quantidade seguinte).
+
+Arquivo `src/store/modules/cart/sagas.js` modificado. Foi adicionado o Saga `updateAmountSaga` e associado ao disparo da Action `@cart/UPDATE_AMOUNT_REQUEST`. Esse Saga verifica na API a quantidade de produtos em estoque e atualiza a quantidade através da função `updateAmountSuccess` se não alcançar o limite. Se alcançar o limite um alerta é exibido.
+
+Arquivo `src/store/modules/cart/reducer.js` modificado. O type foi alterado para `@cart/UPDATE_AMOUNT_SUCCESS` (disparado pelo `updateAmountSaga`). A condição que verifica se a quantidade solicitada é menor ou igual a 0 foi movida pro Saga (antes de qualquer chamada a API).
+
+Arquivo `src/pages/Cart/index.js` modificado para chamar o `updateAmountRequest` (ao invés do `updateAmount`), informando o `id` e a quantidade seguinte utilizados pelo `updateAmountSaga`.
 
 ---

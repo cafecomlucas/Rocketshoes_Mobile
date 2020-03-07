@@ -34,7 +34,10 @@ import {
   NextButtonText,
 } from './styles';
 
-import {removeFromCart, updateAmount} from '../../store/modules/cart/actions';
+import {
+  removeFromCart,
+  updateAmountRequest,
+} from '../../store/modules/cart/actions';
 
 const Cart = ({dispatch, navigation, cartSize, products, productsTotal}) => {
   function handleDelete(id) {
@@ -42,11 +45,11 @@ const Cart = ({dispatch, navigation, cartSize, products, productsTotal}) => {
   }
 
   function handleIncrement(product) {
-    dispatch(updateAmount(product.id, product.amount + 1));
+    dispatch(updateAmountRequest(product.id, product.amount + 1));
   }
 
   function handleDecrement(product) {
-    dispatch(updateAmount(product.id, product.amount - 1));
+    dispatch(updateAmountRequest(product.id, product.amount - 1));
   }
 
   return cartSize <= 0 ? (
