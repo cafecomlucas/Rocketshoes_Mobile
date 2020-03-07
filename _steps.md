@@ -535,3 +535,9 @@ Arquivo `src/store/modules/cart/sagas.js` modificado. Variável `loading` criada
 Arquivos `src/pages/Home/index.js` e `src/pages/Cart/index.js` modificados para só fazer uma requisição por vez e bloquear requisições adicionais (com base no status de `loading`).
 
 ---
+
+## Services | Atualização da baseURL utilizada pelo 'axios'
+
+Arquivo `src/services/api` atualizado para utilizar a REST API online ao invés da REST API local.
+
+---
