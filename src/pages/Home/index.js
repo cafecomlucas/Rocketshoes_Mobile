@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {IntlProvider, FormattedNumber} from 'react-intl';
 import api from '../../services/api';
-import {addToCart} from '../../store/modules/cart/actions';
+import {addToCartRequest} from '../../store/modules/cart/actions';
 
 import {
   Container,
@@ -34,9 +34,9 @@ class Home extends Component {
     this.setState({products});
   }
 
-  handleAdd = product => {
+  handleAdd = id => {
     const {dispatch} = this.props;
-    dispatch(addToCart(product));
+    dispatch(addToCartRequest(id));
   };
 
   render() {
@@ -66,7 +66,7 @@ class Home extends Component {
                     currency="BRL"
                   />
                 </Price>
-                <AddButton onPress={() => this.handleAdd(product)}>
+                <AddButton onPress={() => this.handleAdd(product.id)}>
                   <AmountContainer>
                     <AddIcon name="add-shopping-cart" size={22} color="#fff" />
                     <TextAmount> {amount[product.id] || 0}</TextAmount>
