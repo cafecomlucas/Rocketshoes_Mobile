@@ -1,3 +1,4 @@
+import {Alert} from 'react-native';
 import {call, put, all, select, takeLatest} from 'redux-saga/effects';
 import api from '../../../services/api';
 
@@ -18,7 +19,7 @@ function* addToCartSaga(action) {
   } = yield call(api.get, `/stock/${id}`);
 
   if (nextAmount > stockAmount) {
-    console.tron.error('Quantidade indisponível no estoque');
+    Alert.alert('Atenção', 'Quantidade indisponível');
     return;
   }
 
