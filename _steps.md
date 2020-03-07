@@ -441,3 +441,17 @@ Para funcionar também foi necessário configurar a [intercionalização](https:
 O arquivo `.eslintrc.js` também foi modificado para que a utilização propriedade style (pelo módulo react-intl) não indique erro.
 
 ---
+
+## Instalação/Configuração do Redux Saga | Middlewares
+
+Instalamos o Redux Saga para lidar com os side-effects através de middlewares:
+
+```bash
+yarn add redux-saga
+```
+
+Arquivo `src/store/modules/rootSagas.js` criado com a exportação de todos os sagas (por equanto só existe funções vazias).
+
+Arquivo `src/store/index.js` modificado para fazer a importação e a execução dos sagas.
+
+---
