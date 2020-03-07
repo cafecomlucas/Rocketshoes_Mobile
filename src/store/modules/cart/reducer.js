@@ -3,7 +3,8 @@ import {produce} from 'immer';
 export default function cart(
   state = {
     products: [],
-    loading: [],
+    loadingProduct: [],
+    loading: false,
   },
   action
 ) {
@@ -32,12 +33,13 @@ export default function cart(
     case '@cart/UPDATE_LOADING': {
       return produce(state, draft => {
         const {id, status} = action;
-        const productIndex = draft.loading.findIndex(p => p.id === id);
+        const productIndex = draft.loadingProduct.findIndex(p => p.id === id);
 
+        draft.loading = status;
         if (productIndex >= 0) {
-          draft.loading[productIndex].status = status;
+          draft.loadingProduct[productIndex].status = status;
         } else {
-          draft.loading.push({id, status});
+          draft.loadingProduct.push({id, status});
         }
       });
     }

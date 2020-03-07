@@ -44,21 +44,22 @@ const Cart = ({
   navigation,
   cartSize,
   products,
+  loadingProduct,
   loading,
   productsTotal,
 }) => {
   function handleDelete(id) {
-    if (loading[id]) return;
+    if (loading) return;
     dispatch(removeFromCart(id));
   }
 
   function handleIncrement({id, amount}) {
-    if (loading[id]) return;
+    if (loading) return;
     dispatch(updateAmountRequest(id, amount + 1));
   }
 
   function handleDecrement({id, amount}) {
-    if (loading[id]) return;
+    if (loading) return;
     dispatch(updateAmountRequest(id, amount - 1));
   }
 
@@ -105,7 +106,7 @@ const Cart = ({
                 <AmountContainer>
                   <RemoveAmountButton onPress={() => handleDecrement(product)}>
                     <RemoveAmountIcon
-                      loading-data={loading[product.id]}
+                      loading-data={loadingProduct[product.id]}
                       name="remove-circle-outline"
                     />
                   </RemoveAmountButton>
@@ -115,7 +116,7 @@ const Cart = ({
                   />
                   <AddAmountButton onPress={() => handleIncrement(product)}>
                     <AddAmountIcon
-                      loading-data={loading[product.id]}
+                      loading-data={loadingProduct[product.id]}
                       name="add-circle-outline"
                     />
                   </AddAmountButton>
@@ -158,10 +159,15 @@ const mapStateToProps = state => ({
     subTotal: product.price * product.amount,
   })),
 
-  loading: state.cart.loading.reduce((loading, product) => {
-    loading[product.id] = product.status;
-    return loading;
-  }, {}),
+  loadingProduct: state.cart.loadingProduct.reduce(
+    (loadingProduct, product) => {
+      loadingProduct[product.id] = product.status;
+      return loadingProduct;
+    },
+    {}
+  ),
+
+  loading: state.cart.loading,
 
   productsTotal: state.cart.products.reduce(
     (sumTotal, product) => sumTotal + product.price * product.amount,

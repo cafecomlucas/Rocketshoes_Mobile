@@ -36,14 +36,14 @@ class Home extends Component {
   handleAdd = id => {
     const {loading, dispatch} = this.props;
 
-    if (loading[id]) return;
+    if (loading) return;
 
     dispatch(addToCartRequest(id));
   };
 
   render() {
     const {products, loadingProducts} = this.state;
-    const {amount, loading} = this.props;
+    const {amount, loadingProduct} = this.props;
 
     return loadingProducts ? (
       <ContainerLoading>
@@ -73,10 +73,10 @@ class Home extends Component {
                   />
                 </Price>
                 <AddButton
-                  loading-data={loading[product.id]}
+                  loading-data={loadingProduct[product.id]}
                   onPress={() => this.handleAdd(product.id)}>
                   <AmountContainer>
-                    {loading[product.id] ? (
+                    {loadingProduct[product.id] ? (
                       <LoadingButtonIcon size={22} color="#FFF" />
                     ) : (
                       <AddIcon
@@ -104,10 +104,16 @@ const mapStateToProps = state => ({
     sumAmount[product.id] = product.amount;
     return sumAmount;
   }, {}),
-  loading: state.cart.loading.reduce((loading, product) => {
-    loading[product.id] = product.status;
-    return loading;
-  }, {}),
+
+  loading: state.cart.loading,
+
+  loadingProduct: state.cart.loadingProduct.reduce(
+    (loadingProduct, product) => {
+      loadingProduct[product.id] = product.status;
+      return loadingProduct;
+    },
+    {}
+  ),
 });
 
 export default connect(mapStateToProps)(Home);

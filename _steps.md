@@ -527,3 +527,11 @@ Arquivo `src/store/modules/cart/sagas.js` modificado. Na função `updateAmountS
 Arquivos `src/pages/Cart/index.js` e `src/pages/Cart/styles.js` modificados. A estrutura e a estilização foram alterados para deixar os botões de remover/adicionar produto cinzas quando tocados (até a conclusão da operação). A lista `loading` é utilizada para alterar a estilização e a funcionalidade de cada botão condicionalmente.
 
 ---
+
+## Cart | Home | Cart Saga | Bloqueia qualquer nova requisição quando uma requisição estiver em andamento
+
+Arquivo `src/store/modules/cart/sagas.js` modificado. Variável `loading` criada para guardar o status do carregamento geral (a variável que era utilizada pra verificar o carregamento de cada produto agora tem o nome `loadingProduct`). O status de carregamento geral é alterado toda vez que qualquer produto é adicionado/modificado.
+
+Arquivos `src/pages/Home/index.js` e `src/pages/Cart/index.js` modificados para só fazer uma requisição por vez e bloquear requisições adicionais (com base no status de `loading`).
+
+---
