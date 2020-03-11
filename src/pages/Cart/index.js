@@ -1,5 +1,5 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, {useCallback} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import {IntlProvider, FormattedNumber} from 'react-intl';
 
 import {
@@ -39,30 +39,56 @@ import {
   updateAmountRequest,
 } from '../../store/modules/cart/actions';
 
-const Cart = ({
-  dispatch,
-  navigation,
-  cartSize,
-  products,
-  loadingProduct,
-  loading,
-  productsTotal,
-}) => {
-  function handleDelete(id) {
-    if (loading) return;
-    dispatch(removeFromCart(id));
-  }
+const Cart = ({navigation}) => {
+  /** GLOBAL STATE */
+  const dispatch = useDispatch();
+  const cartSize = useSelector(state => state.cart.products.length);
+  const products = useSelector(state =>
+    state.cart.products.map(product => ({
+      ...product,
+      subTotal: product.price * product.amount,
+    }))
+  );
+  const loadingProduct = useSelector(state =>
+    state.cart.loadingProduct.reduce((loadingProduct, product) => {
+      loadingProduct[product.id] = product.status;
+      return loadingProduct;
+    }, {})
+  );
+  const loading = useSelector(state => state.cart.loading);
+  const productsTotal = useSelector(state =>
+    state.cart.products.reduce(
+      (sumTotal, product) => sumTotal + product.price * product.amount,
+      0
+    )
+  );
 
-  function handleIncrement({id, amount}) {
-    if (loading) return;
-    dispatch(updateAmountRequest(id, amount + 1));
-  }
+  /** HANDLER METHODS */
+  const handleDelete = useCallback(
+    id => {
+      if (loading) return;
+      dispatch(removeFromCart(id));
+    },
+    [loading, dispatch]
+  );
 
-  function handleDecrement({id, amount}) {
-    if (loading) return;
-    dispatch(updateAmountRequest(id, amount - 1));
-  }
+  const handleIncrement = useCallback(
+    ({id, amount}) => {
+      if (loading) return;
+      dispatch(updateAmountRequest(id, amount + 1));
+    },
+    [loading, dispatch]
+  );
 
+  const handleDecrement = useCallback(
+    ({id, amount}) => {
+      if (loading) return;
+      dispatch(updateAmountRequest(id, amount - 1));
+    },
+    [loading, dispatch]
+  );
+
+  /** RENDER */
   return cartSize <= 0 ? (
     <Container>
       <EmptyIcon name="remove-shopping-cart" />
@@ -151,28 +177,4 @@ const Cart = ({
   );
 };
 
-const mapStateToProps = state => ({
-  cartSize: state.cart.products.length,
-
-  products: state.cart.products.map(product => ({
-    ...product,
-    subTotal: product.price * product.amount,
-  })),
-
-  loadingProduct: state.cart.loadingProduct.reduce(
-    (loadingProduct, product) => {
-      loadingProduct[product.id] = product.status;
-      return loadingProduct;
-    },
-    {}
-  ),
-
-  loading: state.cart.loading,
-
-  productsTotal: state.cart.products.reduce(
-    (sumTotal, product) => sumTotal + product.price * product.amount,
-    0
-  ),
-});
-
-export default connect(mapStateToProps)(Cart);
+export default Cart;

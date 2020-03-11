@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector, connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../../pages/Home';
@@ -19,8 +19,10 @@ const Stack = createStackNavigator();
 // console.tron.log(Stack.Navigator);
 
 const Header = ({navigation}) => {
+  /** GLOBAL STATE */
   const cartSize = useSelector(state => state.cart.products.length);
 
+  /** RENDER */
   return (
     <>
       <HeaderNav>

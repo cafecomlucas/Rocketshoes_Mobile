@@ -569,3 +569,13 @@ Componente `Header` modificado para utilizar os Hooks ao invés da sintaxe antig
 Foi utilizado o hook do React Redux: `useSelector` (acesso ao estado global).
 
 ---
+
+## Refactory | Cart | Convertendo componente para utilização dos React Hooks
+
+Componente `Cart` modificado para utilizar os Hooks ao invés da sintaxe antiga.
+
+Foi utilizado o hook do React: `useCallback` (métodos que dependem de dados).
+
+Também foram utilizados os hooks do React Redux: `useSelector` (acesso ao estado global) e `useDispatch` (disparo das Actions).
+
+---
