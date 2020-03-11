@@ -561,3 +561,11 @@ Foram utilizados os hooks do React: `useState` (acesso ao estado local), `useEff
 Também foram utilizados os hooks do React Redux: `useSelector` (acesso ao estado global) e `useDispatch` (disparo das Actions).
 
 ---
+
+## Refactory | Header | Convertendo componente para utilização dos React Hooks
+
+Componente `Header` modificado para utilizar os Hooks ao invés da sintaxe antiga.
+
+Foi utilizado o hook do React Redux: `useSelector` (acesso ao estado global).
+
+---
