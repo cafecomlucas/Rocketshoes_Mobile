@@ -2,9 +2,11 @@
 
 Aplicação Mobile Android para um e-commerce de venda de tênis. Feita com ReactNative, Redux e Redux Saga. A aplicação consome uma REST API fake e permite criar, listar, atualizar ou remover itens (CRUD) ao carrinho de compras.
 
-Essa aplicação consome o mesmo Back-end da [versão web](https://github.com/cafecomlucas/Rocketshoes).
+Essa aplicação consome o mesmo Back-end da [versão web](https://github.com/cafecomlucas/Rocketshoes_Web).
 
 Passo a passo documentado em: https://github.com/cafecomlucas/Rocketshoes_Mobile/blob/master/_steps.md
+
+![Busca na API e demonstra o CRUD - Rocketshoes Mobile](.github/react-native_ecommerce_crud_redux_saga_rocketshoes.gif)
 
 ---
 
@@ -15,8 +17,8 @@ Passo a passo documentado em: https://github.com/cafecomlucas/Rocketshoes_Mobile
 Clone o repositório, acesse o diretório, instale as dependências e inicie a aplicação:
 
 ```bash
-git clone https://github.com/cafecomlucas/Rocketshoes.git
-cd Rocketshoes
+git clone https://github.com/cafecomlucas/Rocketshoes_Mobile.git
+cd Rocketshoes_Mobile
 yarn
 yarn android
 ```
