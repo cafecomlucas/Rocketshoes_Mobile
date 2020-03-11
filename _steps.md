@@ -541,3 +541,23 @@ Arquivos `src/pages/Home/index.js` e `src/pages/Cart/index.js` modificados para 
 Arquivo `src/services/api` atualizado para utilizar a REST API online ao invés da REST API local.
 
 ---
+
+## Refactory | Instalando/Configurando plugin do react-hooks no ESLint
+
+```bash
+yarn add eslint-plugin-react-hooks -D
+```
+
+Arquivo `.eslintrc.js` modificado. Foi adicionado o novo plugin na propriedade `plugins` e as novas regras para que o editor indique possíveis erros na propriedade `rules`.
+
+---
+
+## Refactory | Home | Convertendo componente para utilização dos React Hooks
+
+Componente `Home` modificado para utilizar os Hooks ao invés da sintaxe antiga.
+
+Foram utilizados os hooks do React: `useState` (acesso ao estado local), `useEffect` (ciclo de vida) e `useCallback` (métodos que dependem de dados).
+
+Também foram utilizados os hooks do React Redux: `useSelector` (acesso ao estado global) e `useDispatch` (disparo das Actions).
+
+---
